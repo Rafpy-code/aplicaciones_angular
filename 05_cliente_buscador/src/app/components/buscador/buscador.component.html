@@ -1,0 +1,17 @@
+<div class="container mt-5">
+  <div class="card p-3">
+  <p>Introduce una temática:
+    <input type="text" [(ngModel)]="tematica">
+  </p>
+  <p>
+    <input class="btn btn-primary" type="button" value="buscar" (click)="buscar()">
+  </p>
+  </div>
+  <div class="container mt-5">
+    <h1>Resultados de la búsqueda</h1>
+    <div class="card p-3" *ngFor="let r of resultados">
+      <a class="text-center" href="{{r.url}}">{{r.url}}</a>
+      <b class="text-center">{{r.descripcion}}</b>
+    </div>
+  </div>
+</div>
