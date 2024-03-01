@@ -1,0 +1,22 @@
+<ul class="nav nav-pills justify-content-center bg-light">
+  <li class="nav-item">
+    <a class="nav-link" routerLink="/">Home</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" routerLink="/catalogo" routerLinkActive="active">Catalogo de libros</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" routerLink="/buscar" routerLinkActive="active">Buscar libro por isbn</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" routerLink="/alta" routerLinkActive="active">Registrar un nuevo libro</a>
+  </li>
+</ul>
+<div class="container">
+  <div class="container mt-3">
+    <figure>
+      <img class="img-thumbnail mx-auto d-block" width="300px" src="../../../assets/img/chris-lawton-zvKx6ixUhWQ-unsplash.jpg" alt="libros">
+    </figure>
+  </div>
+  <router-outlet></router-outlet>
+</div>

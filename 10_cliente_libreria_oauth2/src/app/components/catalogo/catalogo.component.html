@@ -1,0 +1,19 @@
+<div class="container mt-3 justify-content-center">
+  <h1 class="text-center">Catalogo de libros</h1>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>ISBN</th>
+        <th>Título</th>
+        <th>Temática</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let l of libros">
+        <td>{{l.isbn}}</td>
+        <td>{{l.titulo}}</td>
+        <td>{{l.tematica}}</td>
+      </tr>
+    </tbody>
+  </table>
+</div>

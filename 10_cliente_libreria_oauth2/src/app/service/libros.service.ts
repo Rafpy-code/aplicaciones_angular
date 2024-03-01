@@ -1,27 +1,42 @@
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { URL_AUTH } from './../custom_properties';
+import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Libro } from '../model/Libro';
 import { Observable } from 'rxjs';
-import { PASSWORD, USUARIO } from '../custom_properties';
+import {
+  CLIENT_ID,
+  GRANT_TYPE,
+  PASSWORD,
+  USERNAME,
+} from '../custom_properties';
 
 @Injectable({
   providedIn: 'root',
 })
 export class LibrosService {
-  base64 = 'Basic ' + btoa(USUARIO + ':' + PASSWORD);
-  header = new HttpHeaders().set('Authorization', this.base64);
-  urlBase = 'http://localhost:8016/';
+  urlBase = 'http://localhost:8020/';
+  header = new HttpHeaders().set(
+    'Content-Type',
+    'application/x-www-form-urlencoded'
+  );
+  params = new HttpParams();
 
-  constructor(private http: HttpClient) {
-  }
+    //solicitar el token y cambiar autorization por bearer
+
+  constructor(private http: HttpClient) {}
 
   cargarCatalogo(): Observable<Libro[]> {
     return this.http.get<Libro[]>(this.urlBase + 'libros');
   }
 
   buscarLibro(isbn: number): Observable<Libro> {
+    this.params.set('client_id', CLIENT_ID);
+    this.params.set('username', USERNAME);
+    this.params.set('password', PASSWORD);
+    this.params.set('grant_type', GRANT_TYPE);
     return this.http.get<Libro>(this.urlBase + 'libro/' + isbn, {
       headers: this.header,
+      params: this.params,
     });
   }
 
