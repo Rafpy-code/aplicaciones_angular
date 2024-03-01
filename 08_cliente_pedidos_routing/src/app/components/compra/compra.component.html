@@ -1,0 +1,31 @@
+<div class="container mt-3">
+  <h1>Nuevo pedido</h1>
+  <div class="container">
+    <div class="row">
+      <div class="col-sm-6 border border-5 rounded">
+        <div class="form-group mt-3">
+          <label>Productos</label>
+          <select class="form-control" [(ngModel)]="pedido.codigoProducto">
+            <option *ngFor="let p of productos" value="{{ p.codigoProducto }}">
+              Producto: {{ p.producto }} | Precio: {{ p.precioUnitario }} | Stock: {{ p.stock }}
+            </option>
+          </select>
+        </div>
+        <div class="form-group mt-3">
+          <label>Unidades</label>
+          <input
+            type="number"
+            min="0"
+            [(ngModel)]="pedido.unidades"
+            class="form-control"
+          />
+        </div>
+        <br />
+      </div>
+    </div>
+    <br />
+    <div class="container">
+      <button class="btn btn-success" (click)="guardarPedido()">Guardar pedido</button>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,25 @@
+
+
+<div class="container mt-3" *ngIf="pedidos&&pedidos.length>0">
+  <h1 class="text-center">Lista de pedidos</h1>
+  <table class="table">
+    <thead>
+      <tr class="bg-light">
+        <th>Id pedido</th>
+        <th>Codigo producto</th>
+        <th>Unidades</th>
+        <th>Total</th>
+        <th>Fecha</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let p of pedidos">
+        <td>{{ p.idPedido }}</td>
+        <td>{{ p.codigoProducto }}</td>
+        <td>{{ p.unidades }}</td>
+        <td>{{ p.total }}</td>
+        <td>{{ p.fechaPedido }}</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
