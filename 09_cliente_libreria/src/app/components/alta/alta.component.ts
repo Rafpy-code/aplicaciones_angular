@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { LibrosService } from '../../service/libros.service';
 import { Libro } from '../../model/Libro';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-alta',
@@ -12,7 +13,7 @@ export class AltaComponent {
   tematicas: string[] = [];
   libro: Libro;
 
-  constructor(private librosService: LibrosService) {}
+  constructor(private librosService: LibrosService, private router:Router) {}
 
   ngOnInit() {
     this.libro = new Libro();
@@ -26,9 +27,10 @@ export class AltaComponent {
   }
 
   guardar() {
-    this.librosService.alta(this.libro).subscribe();
+    this.librosService.alta(this.libro).subscribe(()=>this.router.navigate(["/catalogo"]));
     this.libro.isbn=null;
     this.libro.titulo='';
     this.libro.tematica='';
   }
+
 }
