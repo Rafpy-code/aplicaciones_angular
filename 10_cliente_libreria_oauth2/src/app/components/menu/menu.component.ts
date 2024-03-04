@@ -13,5 +13,5 @@ export class MenuComponent {
   ngOnInit() {
     this.router.navigate(['/catalogo']);
   }
-  
+
 }

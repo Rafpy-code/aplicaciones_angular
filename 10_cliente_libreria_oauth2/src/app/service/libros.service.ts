@@ -9,34 +9,27 @@ import {
   PASSWORD,
   USERNAME,
 } from '../custom_properties';
+import { TokenResponse } from '../model/TokenResponse';
 
 @Injectable({
   providedIn: 'root',
 })
 export class LibrosService {
-  urlBase = 'http://localhost:8020/';
-  header = new HttpHeaders().set(
-    'Content-Type',
-    'application/x-www-form-urlencoded'
-  );
-  params = new HttpParams();
+  token: string;
+  urlBase: string = 'http://localhost:8020/';
 
-    //solicitar el token y cambiar autorization por bearer
-
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient) {
+    this.setToken();
+  }
 
   cargarCatalogo(): Observable<Libro[]> {
     return this.http.get<Libro[]>(this.urlBase + 'libros');
   }
 
   buscarLibro(isbn: number): Observable<Libro> {
-    this.params.set('client_id', CLIENT_ID);
-    this.params.set('username', USERNAME);
-    this.params.set('password', PASSWORD);
-    this.params.set('grant_type', GRANT_TYPE);
+    let heads = new HttpHeaders().set('Authorization', 'Bearer ' + this.token);
     return this.http.get<Libro>(this.urlBase + 'libro/' + isbn, {
-      headers: this.header,
-      params: this.params,
+      headers: heads,
     });
   }
 
@@ -45,8 +38,23 @@ export class LibrosService {
   }
 
   alta(libro: Libro): Observable<void> {
+    let heads = new HttpHeaders().set('Authorization', 'Bearer ' + this.token);
     return this.http.post<void>(this.urlBase + 'alta', libro, {
-      headers: this.header,
+      headers: heads,
     });
+  }
+
+  //solicitar el token y cambiar autorization por bearer
+  setToken(): void {
+    let url = URL_AUTH;
+    let heads = new HttpHeaders().set('Content-Type', 'application/x-www-form-urlencoded');
+    let params = new HttpParams()
+    .set('client_id', CLIENT_ID)
+    .set('username', USERNAME)
+    .set('password', PASSWORD)
+    .set('grant_type', GRANT_TYPE);
+    this.http
+      .post<TokenResponse>(url, params, { headers: heads })
+      .subscribe((data) => (this.token = data.access_token));
   }
 }
