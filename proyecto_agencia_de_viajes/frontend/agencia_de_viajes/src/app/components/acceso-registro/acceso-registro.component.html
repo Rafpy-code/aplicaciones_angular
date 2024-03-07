@@ -1,0 +1,69 @@
+<div class="container mt-5">
+  <div class="row justify-content-center">
+    <div class="col-md-6">
+      <div class="card login-form">
+        <div class="card-header">
+          <h1 class="display-3 mt-3 text-center">Registro nuevo usuario</h1>
+        </div>
+        <div class="form mx-3">
+          <div class="form-group mt-3">
+            <label class="form-label">Usuario:</label>
+            <input
+              [(ngModel)]="cliente.usuario"
+              type="text"
+              class="form-control"
+              placeholder="Ingrese su usuario"
+            />
+            <div class="form-group mt-3">
+              <label class="form-label">Password:</label>
+              <input
+                [(ngModel)]="cliente.password"
+                type="password"
+                class="form-control"
+                placeholder="Ingrese su contraseña"
+              />
+            </div>
+            <div class="form-group mt-3">
+              <label class="form-label">Dirección:</label>
+              <input
+                [(ngModel)]="cliente.direccion"
+                type="text"
+                class="form-control"
+                placeholder="Ingrese su dirección"
+              />
+            </div>
+            <div class="form-group mt-3">
+              <label class="form-label">Tarjeta de credito:</label>
+              <input
+                [(ngModel)]="cliente.tarjeta"
+                type="text"
+                class="form-control"
+                placeholder="444555666777"
+              />
+            </div>
+            <div class="form-group mt-3">
+              <label class="form-label">DNI:</label>
+              <input
+                [(ngModel)]="cliente.dni"
+                type="text"
+                class="form-control"
+                placeholder="Ingrese su DNI"
+              />
+            </div>
+            <div class="form-group mt-3">
+              <button class="btn btn-outline-dark mb-3 mt-3" (click)="registrar()">Registrar</button>
+            </div>
+          </div>
+        </div>
+        <div class="mt-5 mx-3">
+          <a
+            class="btn btn-outline-dark"
+            role="button"
+            routerLink="/acceso">
+            VOLVER A LOGIN
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

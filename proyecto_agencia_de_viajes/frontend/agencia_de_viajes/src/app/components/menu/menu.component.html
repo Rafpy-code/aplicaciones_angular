@@ -1,0 +1,22 @@
+<ul class="nav nav-pills justify-content-center bg-light">
+  <li class="nav-item">
+    <a class="nav-link" routerLink="/acceso" routerLinkActive="active">Acceso</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link disabled" routerLink="/reservas" routerLinkActive="active">Reservar</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link disabled" routerLink="/misreservas" routerLinkActive="active">Mis reservas</a>
+  </li>
+</ul>
+<div class="container">
+  <div class="container mt-3">
+    <figure>
+      <!-- Ruta para desarrollo -->
+      <img class="img-thumbnail mx-auto d-block" width="300px" src="../../../assets/imagenes/sara-dubler-Koei_7yYtIo-unsplash.jpg" alt="hotel">
+      <!-- Ruta para distribuir -->
+      <!-- <img class="img-thumbnail mx-auto d-block" width="300px" src="assets/imagenes/sara-dubler-Koei_7yYtIo-unsplash.jpg" alt="hotel"> -->
+    </figure>
+  </div>
+  <router-outlet></router-outlet>
+</div>
