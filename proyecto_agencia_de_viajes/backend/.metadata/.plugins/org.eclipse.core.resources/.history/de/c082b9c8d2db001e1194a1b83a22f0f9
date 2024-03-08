@@ -1,0 +1,36 @@
+package com.viajes.init.service.implementations;
+
+import java.util.List;
+
+import com.viajes.init.dtos.HotelDto;
+import com.viajes.init.dtos.ReservaDto;
+import com.viajes.init.dtos.VueloDto;
+import com.viajes.init.service.ReservasService;
+
+public class ReservasServiceImpl implements ReservasService {
+
+	@Override
+	public HotelDto getHotel(int idHotel) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public VueloDto getVuelo(int idVuelo) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public List<ReservaDto> catalogoReservas(String cliente) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public void alta(ReservaDto reserva) {
+		// TODO Auto-generated method stub
+
+	}
+
+}

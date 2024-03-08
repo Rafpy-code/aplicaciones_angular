@@ -1,0 +1,12 @@
+package com.viajes.init.service;
+
+import java.util.List;
+
+import com.viajes.init.model.Hotel;
+
+public interface HotelesService {
+	
+	Hotel datosHotel(int identificador);
+	List<Hotel> catalogoHoteles(String localizacion);
+
+}

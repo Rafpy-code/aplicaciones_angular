@@ -1,0 +1,28 @@
+package com.viajes.init.service.implementations;
+
+import java.util.List;
+
+import com.viajes.init.model.Vuelo;
+import com.viajes.init.service.VuelosService;
+
+public class VuelosServiceImpl implements VuelosService {
+
+	@Override
+	public Vuelo datosVuelo(int identificador) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public List<Vuelo> catalogoVuelos(String destino, int numeroPlazas) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public void actualizarPlzas(int identificador, int plazasReservadas) {
+		// TODO Auto-generated method stub
+
+	}
+
+}

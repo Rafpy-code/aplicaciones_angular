@@ -1,0 +1,11 @@
+package com.viajes.init.dao;
+
+import org.springframework.data.jpa.repository.JpaRepository;
+
+import com.viajes.init.model.Hotel;
+
+public interface HotelesDao extends JpaRepository<Hotel, Integer> {
+	
+	Hotel findByLocalizacion(String localizacion);
+
+}

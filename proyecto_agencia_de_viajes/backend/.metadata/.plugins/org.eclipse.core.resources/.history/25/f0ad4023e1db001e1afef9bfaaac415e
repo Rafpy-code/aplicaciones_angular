@@ -1,0 +1,7 @@
+package com.viajes.init.dao;
+
+import org.springframework.data.jpa.repository.JpaRepository;
+
+public class HotelDao implements JpaRepository<Hotel, Integer> {
+
+}

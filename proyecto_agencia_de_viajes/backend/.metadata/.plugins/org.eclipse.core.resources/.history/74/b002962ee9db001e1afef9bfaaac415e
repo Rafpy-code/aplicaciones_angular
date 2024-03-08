@@ -1,0 +1,18 @@
+package com.viajes.init.dtos;
+
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+
+@NoArgsConstructor
+@AllArgsConstructor
+@Data
+public class ReservaDto {
+
+	private int idreserva;
+	private String usuario;
+	private HotelDto hoteldto;
+	private VueloDto vueloDto;
+	private double precio;
+	
+}

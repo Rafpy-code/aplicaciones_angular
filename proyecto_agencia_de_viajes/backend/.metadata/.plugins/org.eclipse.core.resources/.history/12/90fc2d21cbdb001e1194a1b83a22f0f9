@@ -1,0 +1,18 @@
+package com.viajes.init.service;
+
+import java.util.List;
+
+import com.viajes.init.model.Reserva;
+
+public interface ReservasService {
+	
+	/*
+	 Alta de la misma con los datos de reserva. securizado mediante token JWT para que solo usuarios determinados puedan utilizarlo).
+	 Lista de reservas por cliente 
+	 */
+	
+	List<Reserva> catalogoReservas(String cliente);
+	
+	void alta(Reserva reserva);
+
+}

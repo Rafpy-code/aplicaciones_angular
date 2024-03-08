@@ -1,1 +1,46 @@
-<p>reservas works!</p>
+<div class="container">
+  <div class="mb-3">
+    <b>Destinos</b>
+    <select
+      class="form-select"
+      [(ngModel)]="localizacionSel"
+      (change)="hotelesDisponibles(localizacionSel)"
+    >
+      <option *ngFor="let l of localizaciones" value="{{ l }}">
+        {{ l }}
+      </option>
+    </select>
+  </div>
+
+  <div class="mb-3">
+    <b>Hoteles</b>
+    <select class="form-select" [(ngModel)]="hotel.nombre">
+      <option *ngFor="let n of nombres" value="{{ n }}">
+        {{ n }}
+      </option>
+    </select>
+  </div>
+
+  <div class="mb-3">
+    <b>Personas</b>
+    <select class="form-select"
+      [(ngModel)]="plazasSel"
+      (change)="vuelosDisponibles(localizacionSel, plazasSel)" >
+      <option *ngFor="let n of plazas" value="{{ n }}">
+        {{ n }}
+      </option>
+    </select>
+  </div>
+
+  <div class="mb-3">
+    <b>Vuelos</b>
+    <select class="form-select">
+      <option *ngFor="let v of vuelos" value="{{ v.company }}">
+        Company: {{ v.company }}, plazas disponibles: {{v.plazas}}
+      </option>
+    </select>
+  </div>
+  <div>
+    <button class="btn btn-primary">Guardar</button>
+  </div>
+</div>

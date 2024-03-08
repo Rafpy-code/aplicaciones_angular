@@ -1,0 +1,13 @@
+package com.viajes.init.dao;
+
+import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Query;
+
+import com.viajes.init.model.Hotel;
+
+public interface HotelDao extends JpaRepository<Hotel, Integer> {
+
+	@Query("select h from Hotel h join h.reservas r where r.hotel")
+	Hotel findById(int idHotel);
+	
+}

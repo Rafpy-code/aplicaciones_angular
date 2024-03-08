@@ -1,0 +1,12 @@
+package com.viajes.init.dtos;
+
+public class VueloDto {
+	
+	private int idVuelo;
+	private String company;
+	private String fecha;
+	private double precio;
+	private int plazas;
+	private String destino;
+
+}

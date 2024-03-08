@@ -1,0 +1,26 @@
+package com.viajes.init.controller;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RestController;
+
+import com.viajes.init.model.Hotel;
+import com.viajes.init.model.Vuelo;
+import com.viajes.init.service.VuelosService;
+
+@RestController
+public class VuelosController {
+	
+	@Autowired
+	private VuelosService service;
+	
+	@GetMapping(value = "vuelo/{identificador}", produces = MediaType.APPLICATION_JSON_VALUE)
+	public ResponseEntity<Vuelo> datosDelHotel(@PathVariable("identificador") int identificador) {
+		return new ResponseEntity<Vuelo>(service.datosVuelo(identificador), HttpStatus.OK);
+	}
+
+}

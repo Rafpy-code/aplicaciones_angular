@@ -1,0 +1,14 @@
+package com.viajes.init.service.implementations;
+
+import org.springframework.beans.factory.annotation.Autowired;
+
+import com.viajes.init.dao.HotelesDao;
+
+public class HotelesServiceImpl {
+	
+	@Autowired
+	private HotelesDao hotelesDao ;
+	@Autowired
+	private HotelesService HotelesService;
+
+}

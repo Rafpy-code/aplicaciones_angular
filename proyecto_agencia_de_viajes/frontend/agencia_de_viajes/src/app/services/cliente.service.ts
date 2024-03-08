@@ -1,4 +1,4 @@
-import { HttpClient, HttpParams } from '@angular/common/http';
+import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import Cliente from '../model/Cliente';
 import { Observable } from 'rxjs';
@@ -15,13 +15,9 @@ export class ClienteService {
     return this.http.post<void>(this.urlBase + 'alta', cliente);
   }
 
-  login(usuario: string, password: string): Observable<Cliente> {
-    let params = new HttpParams()
-      .set('usuario',usuario)
-      .set('password',password)
-      console.log(params);
+  loginService(usuario: string, password: string): Observable<Cliente> {
     return this.http.get<Cliente>(
-      this.urlBase + 'login/', {params:params}
+      this.urlBase + 'login/'+usuario+'/'+password
     );
   }
 }

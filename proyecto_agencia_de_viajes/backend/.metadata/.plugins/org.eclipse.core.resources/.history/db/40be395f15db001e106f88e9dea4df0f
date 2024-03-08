@@ -1,0 +1,27 @@
+package com.viajes.init.service.implementations;
+
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import com.viajes.init.dao.HotelesDao;
+import com.viajes.init.model.Hotel;
+import com.viajes.init.service.HotelesService;
+
+@Service
+public class HotelesServiceImpl implements HotelesService{
+	
+	@Autowired
+	private HotelesDao hotelesDao ;
+	
+	@Override
+	public Hotel datosHotel(int identificador) {
+		return hotelesDao.findById(identificador).get();
+	}
+	@Override
+	public List<Hotel> catalogoHoteles(String localizacion) {
+		return hotelesDao.findByLocalizacion(localizacion);
+	}
+
+}

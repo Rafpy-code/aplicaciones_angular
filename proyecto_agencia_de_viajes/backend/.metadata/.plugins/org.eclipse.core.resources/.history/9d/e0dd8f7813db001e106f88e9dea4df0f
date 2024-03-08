@@ -1,0 +1,8 @@
+package com.viajes.init.service;
+
+public interface HotelesService {
+	/*
+	Datos de hotel por identificador
+ 	Lista de hoteles por localización */
+
+}

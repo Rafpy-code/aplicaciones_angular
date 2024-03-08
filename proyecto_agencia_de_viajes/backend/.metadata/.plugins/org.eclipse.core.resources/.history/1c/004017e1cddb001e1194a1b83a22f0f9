@@ -1,0 +1,16 @@
+package com.viajes.init.mappers;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
+
+import com.viajes.init.service.ReservasService;
+
+@Component
+public class Mapeador {
+	
+	@Autowired
+	private ReservasService service;
+	
+	public 
+
+}

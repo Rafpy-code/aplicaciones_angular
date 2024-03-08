@@ -1,0 +1,15 @@
+package com.viajes.init.dao;
+
+import java.util.List;
+
+import org.springframework.data.jpa.repository.JpaRepository;
+
+import com.viajes.init.model.Hotel;
+import com.viajes.init.model.Reserva;
+import com.viajes.init.model.Vuelo;
+
+public interface ReservasDao extends JpaRepository<Reserva, Integer> {
+
+	List<Reserva> findByCliente(String cliente);
+	
+}

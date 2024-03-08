@@ -1,0 +1,13 @@
+package com.viajes.init.dao;
+
+import java.util.List;
+
+import org.springframework.data.jpa.repository.JpaRepository;
+
+import com.viajes.init.model.Vuelo;
+
+public interface VuelosDao extends JpaRepository<Vuelo, Integer> {
+	
+	List<Vuelo> findByDestinoAndPlazas(String destino, int plazas);
+
+}
