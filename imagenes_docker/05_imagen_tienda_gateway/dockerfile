@@ -1,0 +1,8 @@
+FROM openjdk
+ADD tienda.jar tienda.jar
+ENV HOST=10.1.3.11
+ENV HOST_EUREKA=10.1.3.11
+ENV HOST_KEYCLOAK=10.1.3.11
+ENV HOST_CONFIG=10.1.3.11
+ENV HOST_DB=10.1.3.11
+ENTRYPOINT java -jar tienda.jar

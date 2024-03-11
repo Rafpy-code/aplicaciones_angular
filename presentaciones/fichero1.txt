@@ -1,0 +1,184 @@
+a?($6C>U
+1z0-808 java SE examen oracle
+kiosco
+//a13e100
+https://drive.google.com/drive/folders/1Xcw3vM0QUDHmj02SoJPlWhlh2JcVLdGX
+
+https://www.baeldung.com/thymeleaf-in-spring-mvc
+
+https://docs.oracle.com/en/java/javase/21/docs/api/index.html
+https://javaee.github.io/javaee-spec/javadocs/
+Ramon_JavaEE_2023
+
+https://github.com/amartinsierra/javaestandar2023
+https://www.youtube.com/channel/UC9cTRiSFSVVwkRn0u5HuioA
+============
+git remote add origin https://github.com/Rafpy-code/curso_javase_javaee.git
+git branch -M main
+git push -u origin main
+===========
+TOMCAT servidor de aplicaciones
+https://tomcat.apache.org/download-10.cgi
+
+=========================
+PARA TRABAJAR CON MAVEN Y TOMCAT 10
+
+<%@taglib prefix="c" uri="jakarta.tags.core" %>
+<c:if test="${!empty sessionScope.carrito}">
+<c:forEach var="producto" items="${sessionScope.carrito}" varStatus="estado">
+	<tr>
+		<td>${estado.index+1}</td>
+		<td>${producto.nombre}</td>
+	</tr>
+</c:forEach>
+</c:if>
+
+//PARA LO DEL FILTRO
+package intercepting;
+
+import java.io.IOException;
+
+import jakarta.servlet.Filter;
+import jakarta.servlet.FilterChain;
+import jakarta.servlet.FilterConfig;
+import jakarta.servlet.ServletException;
+import jakarta.servlet.ServletRequest;
+import jakarta.servlet.ServletResponse;
+import jakarta.servlet.http.HttpFilter;
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpSession;
+
+
+public class FiltroLogin extends HttpFilter implements Filter {
+
+	
+	public void destroy() {
+		// TODO Auto-generated method stub
+	}
+
+	
+	public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain) throws IOException, ServletException {
+		// Todas las peticiones pasan por aquí
+		//el filtro se ejecuta en cada llamada. Si intentamos colarnos en cualquier página
+		//sin estar autenticado, le mandamos a la página de login
+		
+		//recogemos variable de sesion de usuario creada en LoginController
+		HttpSession sesion=((HttpServletRequest)request).getSession();
+		String usuario= (String) sesion.getAttribute("usuario");
+		//si el usuario está autenticado (existe el atributo de sesión usuario) le dejamos pasar
+		if(usuario!=null) {
+			// pasa la petición a su destino
+			chain.doFilter(request, response);
+			return;
+		}else {			
+			//si la llamada es para autenticar (para logarse), le dejamos pasar a loginController
+			//obtenemos la dirección de entrada y el valor del parámetro operación: FrontController?operation=doLogin
+			
+			//casting obtener ruta (aunque ahora no la usamos en el if
+			String path = ((HttpServletRequest)request).getServletPath();
+			//optener parámetro operación
+			String param =  ((HttpServletRequest)request).getParameter("operation");
+			
+			//Si el parámetro es operation y es distinto de null. 
+			//Modo cortocircuito, si es null no comprueba el parametro (esto es así por seguridad)
+			if(param !=null && (param.equals("doLogin") || param.equals("doAltaCliente")  || param.equals("toAltaCliente"))) {
+				// pasa la petición a su destino
+				chain.doFilter(request, response);
+				return;
+			}else {
+			//si no, le mandamos a la página de login
+			request.getRequestDispatcher("inicio.html").forward(request, response);	
+			}
+		}
+		
+	}
+
+	
+	public void init(FilterConfig fConfig) throws ServletException {
+		// TODO Auto-generated method stub
+	}
+
+} 
+
+
+POM.XML
+<!-- DEPENDENCIAS https://mvnrepository.com -->
+<!-- DEPENDENCIAS https://mvnrepository.com -->
+	<dependencies>
+		<!--
+		https://mvnrepository.com/artifact/jakarta.servlet.jsp.jstl/jakarta.servlet.jsp.jstl-api -->
+		<!-- USAR LAS 2 DEPENDENCIAS JUNTAS Y EN EL JSP <%@taglib prefix="c"
+		uri="jakarta.tags.core" %>-->
+		<dependency>
+			<groupId>jakarta.servlet.jsp.jstl</groupId>
+			<artifactId>jakarta.servlet.jsp.jstl-api</artifactId>
+			<version>3.0.0</version>
+		</dependency>
+		<dependency>
+			<groupId>org.glassfish.web</groupId>
+			<artifactId>jakarta.servlet.jsp.jstl</artifactId>
+			<version>3.0.0</version>
+		</dependency>
+		<!-- PARA TRABAJAR CON LA BASE DE DATOS MYSQL-->
+		<!--
+		https://mvnrepository.com/artifact/org.hibernate/hibernate-core-jakarta -->
+		<dependency>
+			<groupId>org.hibernate</groupId>
+			<artifactId>hibernate-core-jakarta</artifactId>
+			<version>5.6.15.Final</version>
+			<!-- Excluir porque el cdi se trae una versión más moderna-->
+			<exclusions>
+				<!-- without exclusion of jandex in hibernate a no such method
+				error is raised -->
+				<!-- with    exclusion an explicit dependency to jandex is needed
+				(see below)  -->
+				<!-- note that jandex is referenced with groupId io.smallrye
+				actually          -->
+				<exclusion>
+					<groupId>org.jboss</groupId>
+					<artifactId>jandex</artifactId>
+				</exclusion>
+			</exclusions>
+		</dependency>
+		<!-- https://mvnrepository.com/artifact/com.mysql/mysql-connector-j -->
+		<dependency>
+			<groupId>com.mysql</groupId>
+			<artifactId>mysql-connector-j</artifactId>
+			<version>8.1.0</version>
+		</dependency>
+		<!-- PARA LOS PASAR LOS JSON DESDE LOS SERVLETS-->
+		<!-- https://mvnrepository.com/artifact/com.google.code.gson/gson -->
+		<dependency>
+			<groupId>com.google.code.gson</groupId>
+			<artifactId>gson</artifactId>
+			<version>2.10.1</version>
+		</dependency>
+		<!-- PARA CREAR LOS CONSTRUCTORES Y DATA-->
+		<!-- https://mvnrepository.com/artifact/org.projectlombok/lombok -->
+		<dependency>
+			<groupId>org.projectlombok</groupId>
+			<artifactId>lombok</artifactId>
+			<version>1.18.30</version>
+			<scope>provided</scope>
+		</dependency>
+		<!--LAS 3 SIGUIENTES SON PARA EL  CDI-->
+		<!--
+		https://mvnrepository.com/artifact/jakarta.enterprise/jakarta.enterprise.cdi-api -->
+		<dependency>
+			<groupId>jakarta.enterprise</groupId>
+			<artifactId>jakarta.enterprise.cdi-api</artifactId>
+			<version>4.0.1</version>
+		</dependency>
+		<!--
+		https://mvnrepository.com/artifact/org.jboss.weld.servlet/weld-servlet-shaded -->
+		<dependency>
+			<groupId>org.jboss.weld.servlet</groupId>
+			<artifactId>weld-servlet-shaded</artifactId>
+			<version>5.1.0.Final</version>
+		</dependency>
+		<dependency>
+			<groupId>io.smallrye</groupId>
+			<artifactId>jandex</artifactId>
+			<version>3.0.5</version>
+		</dependency>
+	</dependencies>

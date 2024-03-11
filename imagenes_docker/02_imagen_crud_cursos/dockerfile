@@ -1,0 +1,5 @@
+FROM openjdk
+ADD crud_cursos.jar crud_cursos.jar
+ENV HOST_DB=10.1.3.11
+ENV PORT_DB=3306
+ENTRYPOINT java -jar crud_cursos.jar

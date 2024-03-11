@@ -1,0 +1,3 @@
+FROM openjdk
+ADD buscador.jar buscador.jar
+ENTRYPOINT java -jar buscador.jar
